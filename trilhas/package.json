@@ -1,0 +1,27 @@
+{
+  "name": "trilhas",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "concurrently -k \"node server/index.js\" \"vite\"",
+    "build:tracks": "node scripts/build-tracks.mjs",
+    "build": "npm run build:tracks && vite build",
+    "start": "node server/index.js",
+    "validate": "node scripts/validate-tracks.mjs"
+  },
+  "dependencies": {
+    "@fontsource-variable/nunito": "^5.3.0",
+    "express": "^4.21.0",
+    "lucide-react": "^1.63.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "sql.js": "^1.12.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.4",
+    "concurrently": "^9.1.0",
+    "vite": "^5.4.11"
+  },
+  "description": "Trilhas: app de aprendizado gamificado (estilo Mimo/Duolingo) com Mentor de IA, notas e trilhas geradas por IA"
+}

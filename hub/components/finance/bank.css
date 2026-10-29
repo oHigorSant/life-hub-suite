@@ -1,0 +1,34 @@
+.bk-modal { width: min(720px, 100%); }
+.bk-hint { margin: 0; font-size: 12.5px; color: #6e6e73; line-height: 1.5; }
+.bk-warn { display: flex; gap: 10px; background: rgba(255, 159, 10, .12); color: #7a4a00; border-radius: 14px; padding: 12px 14px; font-size: 13.5px; line-height: 1.5; }
+.bk-warn code { background: rgba(0, 0, 0, .06); padding: 1px 6px; border-radius: 6px; font-size: 12.5px; word-break: break-all; }
+.bk-ok { margin: 0; display: flex; align-items: center; gap: 6px; background: rgba(48, 209, 88, .12); color: #1a6b35; border-radius: 12px; padding: 10px 14px; font-size: 13.5px; }
+.bk-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.bk-list li { display: flex; align-items: center; gap: 12px; border: 1px solid rgba(0, 0, 0, .08); border-radius: 16px; padding: 12px 14px; }
+.bk-list img, .bk-ico { width: 38px; height: 38px; border-radius: 10px; object-fit: contain; background: #f5f5f7; flex: none; display: grid; place-items: center; }
+.bk-main { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+.bk-main strong { font-size: 15px; } .bk-main span { font-size: 12.5px; color: #6e6e73; }
+.bk-bad { font-style: normal; font-size: 12.5px; color: #c1281f; }
+.bk-act { display: flex; align-items: center; gap: 6px; flex: none; }
+.bk-act button { border: 0; background: rgba(0, 0, 0, .06); color: #1d1d1f; font: inherit; font-size: 13px; border-radius: 99px; cursor: pointer; display: inline-flex; align-items: center; gap: 5px; padding: 6px 12px; }
+.bk-act button.ghost { background: none; color: #8e8e93; padding: 6px 8px; }
+.bk-act button:disabled { opacity: .5; cursor: default; }
+.bk-empty { border: 1px dashed rgba(0, 0, 0, .15) !important; color: #6e6e73; font-size: 13.5px; justify-content: center; text-align: center; }
+.bk-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.bk-qr { display: flex; gap: 18px; align-items: center; background: #f5f5f7; border-radius: 18px; padding: 16px; flex-wrap: wrap; }
+.bk-qr img { border-radius: 12px; background: #fff; padding: 6px; }
+.bk-qr > div { flex: 1; min-width: 200px; display: flex; flex-direction: column; gap: 6px; }
+.bk-qr p { margin: 0; font-size: 13px; color: #3a3a3c; line-height: 1.45; } .bk-qr small { font-size: 11.5px; color: #8e8e93; word-break: break-all; }
+.bk-settings { display: flex; flex-direction: column; gap: 8px; font-size: 13.5px; }
+.bk-settings label { display: flex; align-items: flex-start; gap: 8px; line-height: 1.4; } .bk-settings small { color: #8e8e93; }
+.bk-act .spin, .bk-actions .spin { animation: bk-spin 1s linear infinite; }
+@keyframes bk-spin { to { transform: rotate(360deg); } }
+.bk-guide { background: #f5f5f7; border-radius: 18px; padding: 16px 18px; display: flex; flex-direction: column; gap: 10px; }
+.bk-guide.alert { background: rgba(255, 159, 10, .1); }
+.bk-guide h3 { margin: 0; font-size: 15px; font-weight: 600; letter-spacing: -.01em; }
+.bk-guide p { margin: 0; font-size: 13.5px; line-height: 1.5; color: #3a3a3c; }
+.bk-guide ol { margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 8px; font-size: 13.5px; line-height: 1.5; color: #1d1d1f; }
+.bk-guide a { color: #0071e3; text-decoration: none; } .bk-guide a:hover { text-decoration: underline; }
+.bk-linkbtn { border: 0; background: none; padding: 0; font: inherit; color: #0071e3; cursor: pointer; }
+.bk-itemid label { display: flex; flex-direction: column; gap: 6px; font-size: 12.5px; color: #6e6e73; }
+.bk-itemid span { display: flex; gap: 8px; } .bk-itemid input { flex: 1; min-width: 0; font: inherit; font-size: 13.5px; border: 1px solid rgba(0, 0, 0, .12); border-radius: 10px; padding: 8px 10px; }

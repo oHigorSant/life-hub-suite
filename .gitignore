@@ -1,0 +1,29 @@
+# dependências e builds
+node_modules/
+.next/
+dist/
+*.tsbuildinfo
+
+# segredos e dados pessoais — NUNCA versionar
+.env
+.env.*
+!.env.example
+hub/data/
+hub/uploads/
+trilhas/data/
+trilhas/tracks-built/
+
+# lixo do sistema/editor
+.DS_Store
+Thumbs.db
+*.log
+.vscode/
+.idea/
+
+# mobile (se o Claude gerar um wrapper Capacitor/Android)
+android/
+ios/
+capacitor.config.json
+
+# gerado no prebuild do Hub (scripts/copy-excalidraw-assets.mjs)
+hub/public/excalidraw-assets/
