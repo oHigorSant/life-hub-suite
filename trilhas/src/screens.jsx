@@ -97,6 +97,7 @@ export function Path({ track, go }) {
         <button className="iconbtn" onClick={() => go('/')} aria-label="Voltar"><Icon name="arrow-left" size={22} /></button>
         <div className="ph-title"><TrackTile icon={track.icon} color={track.color} size={36} /><b>{track.title}</b></div>
         <span className="small muted">{st.done}/{st.total}{st.done < st.total ? ` · ${fmtMin(minutesLeft(track, doneMap))}` : ''}</span>
+        {track.custom && <button className="iconbtn" onClick={() => go(`/t/${track.id}/editar`)} aria-label="Editar trilha"><Icon name="pencil" size={20} /></button>}
       </div>
       {track.dataset && (
         <button className="trainbar" onClick={() => go(`/lab/${track.id}`)}>
@@ -299,7 +300,8 @@ export function Create({ go, refresh }) {
         <div className="seg">{['iniciante', 'intermediário', 'avançado'].map((l) => <button key={l} className={level === l ? 'on' : ''} onClick={() => setLevel(l)}>{l}</button>)}</div>
       </div>
       <div className="field"><span>Capítulos: {chapters}</span>
-        <input type="range" min="2" max="8" value={chapters} onChange={(e) => setChapters(+e.target.value)} />
+        <input type="range" min="2" max="12" value={Math.min(chapters, 12)} onChange={(e) => setChapters(+e.target.value)} />
+        <input type="number" min="2" value={chapters} onChange={(e) => setChapters(Math.max(2, Math.floor(+e.target.value) || 2))} />
       </div>
       {err && <div className="callout err">{err}</div>}
       <button className="btn primary big" disabled={topic.trim().length < 3} onClick={start}><Icon name="wand" size={20} /> Gerar trilha</button>

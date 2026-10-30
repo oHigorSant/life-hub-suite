@@ -8,6 +8,7 @@ import { MentorProvider, MentorFab, MentorPage, useMentor } from './mentor.jsx';
 import Notes from './notes.jsx';
 import Certificate from './certificate.jsx';
 import Lab from './lab.jsx';
+import EditTrack from './edit.jsx';
 import { practiceNodes, buildPractice } from './practice.js';
 
 const useHash = () => {
@@ -101,6 +102,9 @@ function Shell() {
       ? <Lesson key={lid} track={full} chapter={{ title: practice.title, color: full.color }} lesson={practice} nextLesson={null} onExit={() => go(`/t/${tid}`)} onNext={() => go(`/t/${tid}`)} />
       : <div className="page center"><Mascot mood="think" size={90} /><p>Conclua pelo menos uma lição para liberar o treino.</p><button className="btn primary" onClick={() => go(`/t/${tid}`)}>Voltar</button></div>;
   }
+  else if (tid && lid === 'editar') body = full.custom
+    ? <EditTrack key={tid} track={full} go={go} refresh={refresh} reload={() => loadTrackFull(tid, true).then(setFull)} />
+    : <div className="page center"><p>Só trilhas criadas por IA podem ser editadas.</p><button className="btn primary" onClick={() => go(`/t/${tid}`)}>Voltar</button></div>;
   else if (tid && lid === 'certificado') body = <Certificate track={full} go={go} />;
   else if (tid && lid) {
     const flat = full.chapters.flatMap((c) => c.lessons.map((l) => ({ c, l })));

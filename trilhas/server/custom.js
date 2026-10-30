@@ -91,7 +91,7 @@ const slug = (s) => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').rep
 const save = (dir, t) => { const f = fileOf(dir, t.id); writeFileSync(f + '.tmp', JSON.stringify(t)); renameSync(f + '.tmp', f); };
 
 function buildChapters(chaptersIn, startIndex = 0, usedIds = new Set()) {
-  return list(chaptersIn, 1, 12, 'chapters').map((c, ci) => {
+  return list(chaptersIn, 1, Infinity, 'chapters').map((c, ci) => {
     c = unJson(c);
     const n = startIndex + ci;
     const cid = `c${n + 1}`;
@@ -150,5 +150,33 @@ export function deleteTrack(dir, id) {
   const track = JSON.parse(readFileSync(fileOf(dir, id), 'utf8'));
   if (!track.custom) fail('Só é possível apagar trilhas criadas por IA/agente.');
   unlinkSync(fileOf(dir, id));
+  return { ok: true };
+}
+
+export function updateTrack(dir, id, input) {
+  if (!/^[a-z0-9-]+$/.test(id) || !existsSync(fileOf(dir, id))) fail('Trilha não encontrada.');
+  const track = JSON.parse(readFileSync(fileOf(dir, id), 'utf8'));
+  if (!track.custom) fail('Só é possível editar trilhas criadas por IA/agente.');
+  if (input.title != null) track.title = str(input.title, 60, 'title');
+  if (input.subtitle != null) track.subtitle = String(input.subtitle).trim().slice(0, 120);
+  if (input.icon != null) track.icon = safeIcon(input.icon, track.icon);
+  if (Array.isArray(input.chapters)) {
+    const oldCh = new Map(track.chapters.map((c) => [c.id, c]));
+    const chapters = [];
+    for (const cin of input.chapters) {
+      const old = oldCh.get(cin?.id);
+      if (!old) continue;
+      const oldL = new Map(old.lessons.map((l) => [l.id, l]));
+      const lessons = [];
+      for (const lin of Array.isArray(cin.lessons) ? cin.lessons : []) {
+        const ol = oldL.get(lin?.id);
+        if (ol) lessons.push({ ...ol, title: str(lin.title ?? ol.title, 80, 'lesson title') });
+      }
+      chapters.push({ ...old, title: str(cin.title ?? old.title, 80, 'chapter title'), desc: String(cin.desc ?? old.desc ?? '').trim().slice(0, 200), lessons });
+    }
+    if (!chapters.length) fail('A trilha precisa ter pelo menos um capítulo (para tirar tudo, exclua a trilha).');
+    track.chapters = chapters;
+  }
+  save(dir, track);
   return { ok: true };
 }

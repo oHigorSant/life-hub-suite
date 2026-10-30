@@ -461,3 +461,8 @@ body { background-image: radial-gradient(color-mix(in srgb, var(--brand) 14%, tr
   @page { size: landscape; margin: 0; }
 }
 .nodewrap:has(.startbub) { margin-top: 20px; }
+.edit { display: flex; flex-direction: column; gap: 14px; padding-bottom: 40px; }
+.edit input { width: 100%; }
+.editch { display: flex; flex-direction: column; gap: 8px; }
+.editrow { display: flex; align-items: center; gap: 8px; justify-content: space-between; }
+.editrow input { flex: 1; }

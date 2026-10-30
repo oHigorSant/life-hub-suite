@@ -52,6 +52,16 @@ const ALL_AREAS = [
     ),
   },
   {
+    href: "/ingles",
+    label: "Inglês",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M4 6h9M8.5 4v2M5.5 6c.6 3 2.7 5.2 5.5 6.5M11.5 6c-.6 3-2.7 5.2-5.5 6.5" />
+        <path d="m13 20 3.5-9 3.5 9M14.2 17h4.6" />
+      </svg>
+    ),
+  },
+  {
     href: "/trilhas",
     label: "Trilhas",
     icon: (

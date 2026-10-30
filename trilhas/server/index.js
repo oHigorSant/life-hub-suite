@@ -6,7 +6,7 @@ import { startGeneration, getJob, aiHint, claudeAvailable } from './generate.js'
 import { chat, getHistory, clearHistory } from './mentor.js';
 import { listNotes, createNote, updateNote, deleteNote, syncPending } from './notes.js';
 import { hubAvailable } from './hub.js';
-import { createTrack, addLessons, deleteTrack } from './custom.js';
+import { createTrack, addLessons, deleteTrack, updateTrack } from './custom.js';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const builtDir = join(root, 'tracks-built');
@@ -69,6 +69,9 @@ app.post('/api/tracks', (req, res) => {
 app.post('/api/tracks/:id/lessons', (req, res) => {
   try { res.status(201).json(addLessons(builtDir, req.params.id, req.body || {})); } catch (e) { refuse('add_lessons', req, res, e); }
 });
+app.put('/api/tracks/:id', (req, res) => {
+  try { res.json(updateTrack(builtDir, req.params.id, req.body || {})); } catch (e) { refuse('update', req, res, e); }
+});
 app.delete('/api/tracks/:id', (req, res) => {
   try { res.json(deleteTrack(builtDir, req.params.id)); } catch (e) { res.status(e.status || 500).json({ error: String(e.message || e) }); }
 });
@@ -89,7 +92,7 @@ app.get('/api/ai/status', async (_req, res) => res.json({ claude: await claudeAv
 app.post('/api/ai/generate', (req, res) => {
   const { topic, level = 'iniciante', chapters = 4 } = req.body || {};
   if (!topic || String(topic).length > 120) return res.status(400).json({ error: 'tópico inválido' });
-  res.json({ jobId: startGeneration({ topic: String(topic), level, chapters: Math.min(8, Math.max(2, +chapters || 4)), builtDir }) });
+  res.json({ jobId: startGeneration({ topic: String(topic), level, chapters: Math.max(2, Math.floor(+chapters) || 4), builtDir }) });
 });
 
 app.get('/api/ai/jobs/:id', (req, res) => {

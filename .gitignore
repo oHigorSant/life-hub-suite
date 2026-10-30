@@ -8,7 +8,11 @@ dist/
 .env
 .env.*
 !.env.example
-hub/data/
+hub/data/*
+!hub/data/ingles/
+hub/data/ingles/progress.json
+hub/data/ingles/words.json
+hub/data/ingles/reforco.json
 hub/uploads/
 trilhas/data/
 trilhas/tracks-built/

@@ -1,0 +1,14 @@
+import fs from "node:fs";
+import { loadLessons } from "../lib/ingles/lessons.js";
+import { lessonTokens } from "../lib/ingles/text.js";
+const id = process.argv[2];
+const { byId } = loadLessons();
+const l = byId.get(id);
+const toks = lessonTokens(l.blocks);
+const al = JSON.parse(fs.readFileSync(`data/ingles/align/${id}.json`, "utf8"));
+const [file, a] = Object.entries(al.audios)[0];
+console.log(file, "dur", a.duration, "cov", a.coverage, "tokens", toks.length, "heard", a.heard);
+const show = (i) => `${i}:${toks[i].w}[${a.spans[2 * i]}-${a.spans[2 * i + 1]}]`;
+console.log(Array.from({ length: Math.min(14, toks.length) }, (_, i) => show(i)).join("  "));
+const n = toks.length;
+console.log(Array.from({ length: 10 }, (_, i) => show(n - 10 + i)).join("  "));
