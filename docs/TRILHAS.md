@@ -11,6 +11,7 @@ trilhas/
   scripts/        build-tracks, validate-tracks, check-pedagogy
   data/           progress.json, notes.json, mentor.json   (NÃO vai para o git)
   tracks-built/   JSONs servidos pelo app (gerados; trilhas criadas por IA/agente também caem aqui)
+  tracks-ai/      trilhas prontas geradas por IA (ex.: SQL2, 62 lições), copiadas para tracks-built/ no build
 ```
 
 Rodar: `npm run build` (gera `tracks-built/` + `dist/`) e `npm start` (porta 4300). Em produção o app usa o prefixo `/trilhas-app/` (build do Vite) e o servidor aceita com ou sem ele.
