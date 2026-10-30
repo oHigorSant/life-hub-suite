@@ -1,5 +1,6 @@
 import { createRoot } from 'react-dom/client';
 import '@fontsource-variable/nunito';
+import '@fontsource-variable/jetbrains-mono';
 import App from './App.jsx';
 import './styles.css';
 

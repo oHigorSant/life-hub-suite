@@ -466,3 +466,13 @@ body { background-image: radial-gradient(color-mix(in srgb, var(--brand) 14%, tr
 .editch { display: flex; flex-direction: column; gap: 8px; }
 .editrow { display: flex; align-items: center; gap: 8px; justify-content: space-between; }
 .editrow input { flex: 1; }
+
+/* editor SQL: a tag <code> da camada colorida precisa usar EXATAMENTE a mesma fonte do <textarea>; senão o cursor
+   (que é do textarea) vai se afastando do texto colorido a cada caractere digitado. */
+.ed-hl code, .ed-ta, .codeblock code { font: inherit; letter-spacing: inherit; font-variant-ligatures: none; }
+.ed-hl, .ed-ta { font-variant-ligatures: none; font-kerning: none; }
+/* fonte monoespaçada EMBUTIDA (mesma métrica em qualquer computador) para o editor e os blocos de código */
+.ed-hl, .ed-ta, .codeblock, .codeblock code, .ed-hl code, code.ic { font-family: 'JetBrains Mono Variable', 'Cascadia Mono', Consolas, monospace; }
+.ed-hl, .ed-ta { font-size: 15px; font-weight: 400; font-synthesis: none; text-rendering: auto; }
+.ed-hl .tk-k { font-weight: 400; }
+.ed-hl .tk-c { font-style: normal; }
